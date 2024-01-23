@@ -50,3 +50,12 @@ layout is compatible with upstream, run:
 ```
 $ make install
 ```
+
+## Building with esy
+
+```
+esy
+esy autoconf
+esy ./configure --prefix='#{self.install}'
+esy make install
+```
