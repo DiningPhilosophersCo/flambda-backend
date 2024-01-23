@@ -1,0 +1,56 @@
+{
+  "esy": {
+    "buildsInSource": "_build"
+  },
+  "dependencies": {
+    "ocaml": "4.14.x",
+    "@opam/menhir": "20210419",
+    "@opam/menhirLib": "20210419",
+    "esy-autoconf": "esy-packages/esy-autoconf#fb93edf57b0adc4b27b34a57a562395b224002d3",
+    "@opam/dune": "3.6.1"
+  },
+  "devDependencies": {
+    "@opam/ocaml-lsp-server": "*",
+    "@opam/ocamlformat": "*",
+    "@opam/ocamlformat-rpc": "*",
+    "@opam/utop": "*"
+  },
+  "resolutions": {
+    "@opam/menhir": {
+      "source": "LexiFi/menhir#dbc2127efdd7efdd7cdfdcb448c26c77b90f1ce9",
+      "override": {
+        "build": ["dune build -p menhir,menhirLib,menhirSdk"],
+        "install": [
+          "esy-installer ./menhir.install",
+          "esy-installer ./menhirSdk.install",
+          "esy-installer ./menhirLib.install"
+        ],
+        "dependencies": {
+          "@opam/dune": "*",
+          "@opam/menhirLib": "*",
+          "@opam/menhirSdk": "*"
+        }
+      }
+    },
+    "@opam/menhirLib": {
+      "source": "LexiFi/menhir#dbc2127efdd7efdd7cdfdcb448c26c77b90f1ce9",
+      "override": {
+        "build": ["dune build -p menhirLib"],
+        "install": "esy-installer ./menhirLib.install",
+        "dependencies": {
+          "@opam/dune": "*"
+        }
+      }
+    },
+    "@opam/menhirSdk": {
+      "source": "LexiFi/menhir#dbc2127efdd7efdd7cdfdcb448c26c77b90f1ce9",
+      "override": {
+        "build": ["dune build -p menhirSdk"],
+        "install": "esy-installer ./menhirSdk.install",
+        "dependencies": {
+          "@opam/dune": "*"
+        }
+      }
+    }
+  }
+}
