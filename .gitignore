@@ -64,3 +64,5 @@ _coverage/
 ocamlc
 ocamlopt
 .ocamldebug
+
+_esy
