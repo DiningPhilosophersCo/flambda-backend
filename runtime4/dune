@@ -72,9 +72,9 @@
   libcamlruni.a
   libcamlrun_pic.a
   libcamlrun_shared.so
-  ocamlrun
-  ocamlrund
-  ocamlruni
+  ocamlrun.exe
+  ocamlrund.exe
+  ocamlruni.exe
   ld.conf
   sak)
  (mode fallback)
@@ -99,7 +99,7 @@
     (bash "rm .depend")))))
 
 (install
- (files ocamlrun ocamlrund ocamlruni)
+ (files ocamlrun.exe ocamlrund.exe ocamlruni.exe)
  (section bin)
  (package ocaml_runtime_stdlib))
 

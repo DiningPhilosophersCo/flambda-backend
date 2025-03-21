@@ -305,8 +305,9 @@ libcamlruni.$(A): $(libcamlruni_OBJECTS)
 libcamlrun_pic.$(A): $(libcamlrunpic_OBJECTS)
 	$(call MKLIB,$@, $^)
 
-libcamlrun_shared.$(SO): $(libcamlrunpic_OBJECTS)
-	$(MKDLL) -o $@ $^ $(BYTECCLIBS)
+.PHONY: libcamlrun_shared.so
+libcamlrun_shared.so: $(libcamlrunpic_OBJECTS)
+	$(MKDLL) -o $@.$(SO) $^ $(BYTECCLIBS)
 
 libasmrun.$(A): $(libasmrun_OBJECTS)
 	$(call MKLIB,$@, $^)
@@ -323,8 +324,9 @@ libasmrun_pic.$(A): $(libasmrunpic_OBJECTS)
 libasmrunnnp.$(A): $(libasmrunnnp_OBJECTS)
 	$(call MKLIB,$@, $^)
 
-libasmrun_shared.$(SO): $(libasmrunpic_OBJECTS)
-	$(MKDLL) -o $@ $^ $(NATIVECCLIBS)
+.PHONY: libasmrun_shared.so
+libasmrun_shared.so: $(libasmrunpic_OBJECTS)
+	$(MKDLL) -o $@.$(SO) $^ $(NATIVECCLIBS)
 
 # Target-specific preprocessor and compiler flags
 
