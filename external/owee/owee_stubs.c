@@ -76,6 +76,10 @@ CAMLprim value ml_owee_code_pointer(value closure)
 
 CAMLprim value ml_owee_code_pointer_symbol(value cp)
 {
+  // TODO Windows. Benign right now because
+  // nearest_demangled_symbol doesn't get called
+  // in compiler sourcetree
+#ifndef _WIN32
   const char * result = "";
   Dl_info info;
 
@@ -87,6 +91,7 @@ CAMLprim value ml_owee_code_pointer_symbol(value cp)
   }
 
   return caml_copy_string(result);
+#endif
 }
 
 static inline char * get_bstr(value v_bstr, value v_pos) 
