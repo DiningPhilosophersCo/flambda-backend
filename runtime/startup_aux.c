@@ -36,6 +36,8 @@
 #include "caml/gc_ctrl.h"
 #include "caml/fiber.h"
 
+#include "caml/misc.h"
+
 #include <sys/resource.h>
 
 #ifdef _WIN32
