@@ -94,7 +94,7 @@
   (no-infer
    (progn
     (bash "touch .depend") ; hack.
-    (run make "SAK_LINK=cc -o $(1) $(2)" COMPUTE_DEPS=false sak)
+    (run make "SAK_LINK=x86_64-w64-mingw32-gcc -municode -o $(1) $(2)" COMPUTE_DEPS=false sak)
     (run make -sj8 %{targets} COMPUTE_DEPS=false)
     (bash "rm .depend")))))
 

@@ -262,8 +262,9 @@ SAK_CC ?= $(CC)
 SAK_CFLAGS ?= $(OC_CFLAGS) $(CFLAGS) $(OC_CPPFLAGS) $(CPPFLAGS)
 SAK_LINK ?= $(MKEXE_USING_COMPILER)
 
-sak$(EXE): sak.$(O)
-	$(call SAK_LINK,$@,$^ $(if $(filter true,$(WITH_ADDRESS_SANITIZER)),-fsanitize=address -fsanitize-recover=address))
+.PHONY: sak
+sak: sak.$(O)
+	$(call SAK_LINK,$@$(EXE),$^ $(if $(filter true,$(WITH_ADDRESS_SANITIZER)),-fsanitize=address -fsanitize-recover=address))
 
 sak.$(O): sak.c caml/misc.h caml/config.h
 	$(SAK_CC) -c $(SAK_CFLAGS) $(OUTPUTOBJ)$@ $<

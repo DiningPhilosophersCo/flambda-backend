@@ -32,6 +32,8 @@
 #define strncmp_os wcsncmp
 #define toupper_os towupper
 #define printf_os wprintf
+#define char_os wchar_t
+#define main_os wmain
 #else
 #define strncmp_os strncmp
 #define toupper_os toupper
