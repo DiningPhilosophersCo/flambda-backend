@@ -169,14 +169,14 @@ _build/_bootinstall: Makefile.config $(dune_config_targets)
 	rm -rf _build/_bootinstall
 	mkdir -p _build/_bootinstall/{bin,lib/ocaml}
 	cp $^ _build/_bootinstall/lib/ocaml
-	ln -sf ../../default/$(boot_ocamlopt) _build/_bootinstall/bin/ocamlopt.opt
-	ln -sf ../../default/$(boot_ocamlc) _build/_bootinstall/bin/ocamlc.opt
-	ln -sf ../../default/$(boot_ocamlmklib) _build/_bootinstall/bin/ocamlmklib.opt
-	ln -sf ../../default/$(boot_ocamldep) _build/_bootinstall/bin/ocamldep.opt
-	ln -sf ../../default/$(boot_ocamlobjinfo) _build/_bootinstall/bin/ocamlobjinfo.opt
-	ln -sf "`which ocamllex`" _build/_bootinstall/bin/ocamllex.opt
+	ln -sf ../../default/$(boot_ocamlopt) _build/_bootinstall/bin/ocamlopt.opt$(EXE)
+	ln -sf ../../default/$(boot_ocamlc) _build/_bootinstall/bin/ocamlc.opt$(EXE)
+	ln -sf ../../default/$(boot_ocamlmklib) _build/_bootinstall/bin/ocamlmklib.opt$(EXE)
+	ln -sf ../../default/$(boot_ocamldep) _build/_bootinstall/bin/ocamldep.opt$(EXE)
+	ln -sf ../../default/$(boot_ocamlobjinfo) _build/_bootinstall/bin/ocamlobjinfo.opt$(EXE)
+	ln -sf "`which ocamllex`" _build/_bootinstall/bin/ocamllex.opt$(EXE)
 	for prog in ocamlopt ocamlc ocamllex ocamldep ocamlmklib; do \
-	  ln -sf "$$prog.opt" "_build/_bootinstall/bin/$$prog"; \
+	  ln -sf "$$prog.opt$(EXE)" "_build/_bootinstall/bin/$$prog$(EXE)"; \
 	done
 
 # save a bit of disk space in build trees by using cp -l on Linux
