@@ -30,7 +30,7 @@
 #include "caml/fail.h"
 #include "caml/memory.h"
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) || defined(_WIN32)
 #ifndef locale_t
 #define locale_t _locale_t
 #endif
@@ -42,10 +42,13 @@
 #endif
 #endif
 
+#ifndef _WIN32
 extern locale_t caml_locale;
-
 #define USE_LOCALE locale_t saved_locale = uselocale(caml_locale)
 #define RESTORE_LOCALE uselocale(saved_locale)
+#endif
+
+
 
 static float float32_of_int32(int32_t i)
 {
@@ -312,7 +315,11 @@ CAMLprim value compiler_float32_of_string(value vs)
     if (sign < 0) f = -f;
   } else {
     /* Convert using strtof */
+#ifdef _WIN32
+    f = strtof((const char *) buf, &end);
+#else
     f = strtof_l((const char *) buf, &end, caml_locale);
+#endif
     if (end != dst) goto error;
   }
   if (buf != parse_buffer) caml_stat_free(buf);
@@ -328,9 +335,13 @@ CAMLprim value compiler_float32_format(value fmt, value arg)
   value res;
   float f = float32_of_int32(Int32_val(arg));
 
+#ifndef _WIN32
   USE_LOCALE;
+#endif
   res = caml_alloc_sprintf(String_val(fmt), f);
+#ifndef _WIN32
   RESTORE_LOCALE;
+#endif
 
   return res;
 }
