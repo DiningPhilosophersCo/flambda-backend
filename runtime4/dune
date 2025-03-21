@@ -52,11 +52,12 @@
   domain.c
   float32.c
   simd.c
-  blake2.c)
+  blake2.c
+  ./gen_primitives.sh)
  (action
   (with-stdout-to
    %{targets}
-   (run %{dep:gen_primitives.sh}))))
+   (bash ./gen_primitives.sh))))
 
 (rule
  (targets
