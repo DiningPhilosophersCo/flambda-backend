@@ -30,7 +30,7 @@
  (action
    (with-stdout-to %{targets}
      (bash
-       "`grep '^CPP=' %{conf} | cut -d'=' -f2` -I ../%{env:RUNTIME_DIR=runtime-dir-env-var-not-set}/caml %{c}"
+       "x86_64-w64-mingw32-gcc -E -P -I ../%{env:RUNTIME_DIR=runtime-dir-env-var-not-set}/caml %{c}"
        ))))
 
 (rule
@@ -43,7 +43,7 @@
  (action
    (with-stdout-to %{targets}
      (bash
-       "`grep '^CPP=' %{conf} | cut -d'=' -f2` -I ../%{env:RUNTIME_DIR=runtime-dir-env-var-not-set}/caml %{c}"
+       "x86_64-w64-mingw32-gcc -E -P -I ../%{env:RUNTIME_DIR=runtime-dir-env-var-not-set}/caml %{c}"
        ))))
 
 (include_subdirs unqualified)
