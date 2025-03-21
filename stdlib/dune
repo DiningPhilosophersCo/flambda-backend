@@ -32,7 +32,7 @@
  (preprocess
   (per_module
    ((action
-     (run awk -f %{dep:expand_module_aliases.awk} %{input-file}))
+     (bash "awk -f %{dep:expand_module_aliases.awk} %{input-file}"))
     stdlib))))
 
 (rule
