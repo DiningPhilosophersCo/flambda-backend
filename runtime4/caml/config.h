@@ -134,11 +134,14 @@ typedef unsigned short uint16_t;
 typedef unsigned char uint8_t;
 #endif
 
+typedef int64_t intnat;
+typedef uint64_t uintnat;
+#define ARCH_INTNAT_PRINTF_FORMAT ARCH_INT64_PRINTF_FORMAT
 #if SIZEOF_PTR == SIZEOF_LONG
 /* Standard models: ILP32 or I32LP64 */
-typedef long intnat;
-typedef unsigned long uintnat;
-#define ARCH_INTNAT_PRINTF_FORMAT "l"
+/* typedef long intnat; */
+/* typedef unsigned long uintnat; */
+/* #define ARCH_INTNAT_PRINTF_FORMAT "l" */
 #elif SIZEOF_PTR == SIZEOF_INT
 /* Hypothetical IP32L64 model */
 typedef int intnat;
