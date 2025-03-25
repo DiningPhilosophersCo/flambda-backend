@@ -113,9 +113,10 @@ static void parse_gc_tweak(char_os** opt_p)
           memcmp(name, "help", opt - name) == 0) { /* TODO: strncmp_os */
         fprintf(stderr, "No GC tweaks available in runtime4/\n");
       } else {
-        fprintf(stderr, "Ignored unknown GC tweak '%.*s': "
-                "no GC tweaks available in runtime4.\n",
-                (int)(opt - name), name);
+	// Because it expects char_os to be char not wchar for some reason
+        /* fprintf(stderr, "Ignored unknown GC tweak '%.*s': " */
+        /*         "no GC tweaks available in runtime4.\n", */
+        /*         (int)(opt - name), name); */
       }
       break;
     } else {
@@ -168,7 +169,7 @@ static void parse_ocamlrunparam(char_os* opt)
 // Any default parameters added to an ocaml executable by passing -ocamlrunparam
 // to the compiler.
 // See asmcomp/asmlink.ml
-extern char caml_ocamlrunparam[];
+extern char_os caml_ocamlrunparam[];
 #endif
 
 void caml_parse_ocamlrunparam(void)
