@@ -48,7 +48,7 @@
 #include <xlocale.h>
 #endif
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) || defined(__MINGW32__)
 #ifndef locale_t
 #define locale_t _locale_t
 #endif
@@ -132,7 +132,7 @@ void caml_init_locale(void)
 #ifdef HAS_LOCALE
   if ((locale_t)0 == caml_locale)
   {
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) || defined(__MINGW32__)
     caml_locale = _create_locale(LC_NUMERIC, "C");
 #else
     caml_locale = newlocale(LC_NUMERIC_MASK,"C",(locale_t)0);
