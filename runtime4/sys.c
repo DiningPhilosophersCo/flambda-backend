@@ -789,7 +789,9 @@ CAMLprim value caml_sys_const_naked_pointers_checked(value unit)
 CAMLprim value caml_xdg_defaults(value unit)
 {
 #ifdef _WIN32
-  return caml_win32_xdg_defaults();
+  return Val_emptylist;
+  // TODO(prometheansacrifice)
+  /* return caml_win32_xdg_defaults(); */
 #else
   return Val_emptylist;
 #endif
