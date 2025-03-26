@@ -444,6 +444,50 @@ void caml_gc_message (int, char *, ...)
 #endif
 ;
 
+/* Bits which may be set in caml_verb_gc. The quotations are from the
+ * OCaml manual. */
+
+/* "Start and end of major GC cycle" (unused) */
+#define CAML_GC_MSG_MAJOR           0x0001
+/* "Minor collection and major GC slice" (unused) */
+#define CAML_GC_MSG_MINOR           0x0002
+/* "Growing and shrinking of the heap" */
+#define CAML_GC_MSG_HEAPSIZE        0x0004
+/* "Resizing of stacks and memory manager tables" */
+#define CAML_GC_MSG_STACKSIZE       0x0008
+/* "Heap compaction" (unused) */
+#define CAML_GC_MSG_COMPACT         0x0010
+/* "Change of GC parameters" */
+#define CAML_GC_MSG_PARAMS          0x0020
+/* "Computation of major GC slice size" */
+#define CAML_GC_MSG_SLICESIZE       0x0040
+/* "Calling of finalization functions" */
+#define CAML_GC_MSG_FINALIZE        0x0080
+/* "Startup messages" */
+#define CAML_GC_MSG_STARTUP         0x0100
+/* "Computation of compaction-triggering condition" (unused) */
+#define CAML_GC_MSG_COMPACT_TRIGGER 0x0200
+/* "Output GC statistics at program exit" */
+#define CAML_GC_MSG_STATS           0x0400
+/* "GC debugging messages */
+#define CAML_GC_MSG_DEBUG           0x0800
+/* "Address space reservation changes" */
+#define CAML_GC_MSG_ADDRSPACE       0x1000
+
+/* Default set of messages when runtime invoked with -v */
+
+#define CAML_GC_MSG_VERBOSE (CAML_GC_MSG_MAJOR     | \
+                             CAML_GC_MSG_HEAPSIZE  | \
+                             CAML_GC_MSG_STACKSIZE | \
+                             CAML_GC_MSG_COMPACT   | \
+                             CAML_GC_MSG_PARAMS)
+
+/* Use to control messages which should be output at any non-zero verbosity */
+
+#define CAML_GC_MSG_ANY (-1)
+#define CAML_GC_MESSAGE(category, ...) \
+    caml_gc_message(CAML_GC_MSG_ ## category, __VA_ARGS__)
+
 /* Runtime warnings */
 extern uintnat caml_runtime_warnings;
 int caml_runtime_warnings_active(void);
