@@ -25,6 +25,7 @@
 #endif
 #include "misc.h"
 #include "mlvalues.h"
+#include <signal.h>
 
 #ifdef CAML_INTERNALS
 /* Built-in exceptions. In bytecode, these exceptions are the first fields in
